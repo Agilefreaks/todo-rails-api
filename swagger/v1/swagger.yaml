@@ -1,0 +1,19 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/":
+    get:
+      summary: list todos
+      tags:
+      - Todos
+      responses:
+        '200':
+          description: Test successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
