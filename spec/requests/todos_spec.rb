@@ -34,7 +34,7 @@ RSpec.describe 'todos', type: :request do
 
       response '201', 'todo created' do
         schema type: :object, properties: {
-          id: { type: :string, format: :guid },
+          id: { type: :string, format: :uuid },
           title: { type: :string },
           description: { type: :string },
           due_date: { type: :string, format: :date }
