@@ -12,8 +12,65 @@ paths:
       responses:
         '200':
           description: Test successful
+  "/todos":
+    post:
+      summary: Create a todo
+      tags:
+      - Todos
+      parameters: []
+      responses:
+        '201':
+          description: todo created
+          content:
+            application/json:
+              examples:
+                created_response:
+                  value:
+                    id: 1fe83061-ec9e-464f-8043-3d549df254f2
+                    title: Write doc first api
+                    description: Write an example to prove that doc first apis are
+                      possible
+                    due_date: '2023-10-22'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: guid
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  due_date:
+                    type: string
+                    format: date
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                due_date:
+                  type: string
+                  format: date
+              required:
+              - title
+              - description
+            examples:
+              '0':
+                summary: Create a todo
+                value:
+                  title: Write doc first api
+                  description: Write an example to prove that doc first apis are possible
+                  due_date: '2023-10-22'
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000
