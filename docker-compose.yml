@@ -12,11 +12,20 @@ services:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     volumes:
-      - ".:/api"
+      - .:/api
     ports:
       - "3000:3000"
     depends_on:
       - db
+
+  openapi_mock:
+    container_name: openapi_mock
+    image: muonsoft/openapi-mock
+    volumes:
+      - .:/api
+    ports:
+      - "8080:8080"
+    command: serve --configuration /api/openapi-mock.yaml
 
 volumes:
   pg_data:
